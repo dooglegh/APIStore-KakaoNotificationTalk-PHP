@@ -11,7 +11,7 @@
 
 > composer require mashape/unirest-php
 >
-.
+
 
 ## 제작자 ( Author )
 
@@ -20,7 +20,6 @@ doogle@naver.com
 블로그 : https://blog.doogle.link/
 
 추후에 GO 언어용으로 컨버팅할 계획입니다.
-.
 
 
 ## 라이센스 ( License )
