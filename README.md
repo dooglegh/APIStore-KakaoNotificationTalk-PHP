@@ -17,7 +17,7 @@
 
 doogle@naver.com
 
-블로그 : https://blog.doogle.link/
+블로그 : https://doogle.link/
 
 추후에 GO 언어용으로 컨버팅할 계획입니다.
 
