@@ -6,7 +6,7 @@
  * 
  * Created by doogle@naver.com (Shin, dong-hoon) @ 2017-12-12
  *
- * Blog : https://blog.doogle.link/
+ * Blog : https://doogle.link/
  * 
  * APISTORE 카카오알림톡 API 구현체
  * 발송 및 결과 확인 등의 API 를 구현하였다.
