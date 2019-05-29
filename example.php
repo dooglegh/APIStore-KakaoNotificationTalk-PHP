@@ -30,10 +30,9 @@ require_once "./TKakaoNotificationTalk.php";
 // 초기화.
 $key = "..."; // 구매 시 발급받은 Key의 코드값 (헤더 “x-waple-authorization”의 값으로 설정하는 값을 말한다.)
 $clientId = "..."; // {client_id} 는 API스토어에 가입한 후 해당 API를 사용(구매) 신청한 ID.
-$kakaoPlusFriendClientId = ""; // (현재는 사용하지 않습니다.)
 $defaultCallBack = "..."; // 발신자 전화번호
 
-$knt = new TKakaoNotificationTalk\TKakaoNotificationTalk($key, $clientId, $kakaoPlusFriendClientId, $defaultCallBack);
+$knt = new TKakaoNotificationTalk\TKakaoNotificationTalk($key, $clientId, $defaultCallBack);
 
 // 메시지 발송.
 $body = [
