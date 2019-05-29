@@ -70,7 +70,7 @@ if ($response->body->result_message == 'OK') {
   echo "RESULT CODE: " . $response->body->result_code ."\n";
 }
 
-// 발송결과 확인.
+// 발송결과 확인. (발송결과는.발송후 즉시받을 수 있는 것이 아니므로 1분에 한번씩이라든지 주기적으로 확인해야 합니다.)
 $sendResponse = $knt1->getReport(["cmid" => $response->body->cmid]);
 if (isset($sendResponse) && isset($sendResponse->body) && isset($sendResponse->body->CMID) && $sendResponse->body->CMID != "" && $sendResponse->body->CMID != "result is null") {
   echo "report_status => " . $sendResponse->body->STATUS . "\n"; // 발송상태 1: 발송대기 2: 전송완료 3: >결과수신완료
