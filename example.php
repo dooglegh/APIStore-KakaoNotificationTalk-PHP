@@ -65,7 +65,7 @@ if ($response->body->result_message == "OK") {
 }
 
 
-// 발송결과 확인. (발송결과는 발송후 즉시받을 수 있는 것이 아니므로 1분에 한번씩이라든지 주기적으로 확인해야 합니다.)
+// 발송결과 확인. (발송결과는 발송후 즉시받을 수 있는 것이 아니므로 5분에 한번씩이라든지 주기적으로 확인해야 합니다.)
 $sendResponse = $knt1->getReport(["cmid" => $response->body->cmid]);
 if (isset($sendResponse) 
   && isset($sendResponse->body) 
