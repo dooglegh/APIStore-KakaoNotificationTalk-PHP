@@ -64,6 +64,7 @@ if ($response->body->result_message == "OK") {
   echo "RESULT CODE: " . $response->body->result_code ."\n";
 }
 
+
 // 발송결과 확인. (발송결과는 발송후 즉시받을 수 있는 것이 아니므로 1분에 한번씩이라든지 주기적으로 확인해야 합니다.)
 $sendResponse = $knt1->getReport(["cmid" => $response->body->cmid]);
 if (isset($sendResponse) 
@@ -71,12 +72,12 @@ if (isset($sendResponse)
   && isset($sendResponse->body->CMID) 
   && $sendResponse->body->CMID != "" 
   && $sendResponse->body->CMID != "result is null") {
-  echo "report_status => " . $sendResponse->body->STATUS . "\n"; // 발송상태 1: 발송대기 2: 전송완료 3: >결과수신완료
-  echo "report_status_text => " . $knt1->getReportStatusText($sendResponse->body->STATUS) . "\n"; // 발송상태 텍스트
-  echo "report_rslt => " . $sendResponse->body->RSLT . "\n"; // 최종 카카오알림톡 결과수신
-  echo "report_rslt_text => " . $knt1->getReportResultText($sendResponse->body->RSLT) . "\n"; // 최종 카카오알림톡 결과수신 텍스트
-  echo "report_msg_rslt => " . $sendResponse->body->msg_rslt . "\n"; // 최종 카카오알림톡 실패 시 메시지 결과수신
+  echo "report_status        => " . $sendResponse->body->STATUS . "\n";                                  // 발송상태 1: 발송대기 2: 전송완료 3: >결과수신완료
+  echo "report_status_text   => " . $knt1->getReportStatusText($sendResponse->body->STATUS) . "\n";      // 발송상태 텍스트
+  echo "report_rslt          => " . $sendResponse->body->RSLT . "\n";                                    // 최종 카카오알림톡 결과수신
+  echo "report_rslt_text     => " . $knt1->getReportResultText($sendResponse->body->RSLT) . "\n";        // 최종 카카오알림톡 결과수신 텍스트
+  echo "report_msg_rslt      => " . $sendResponse->body->msg_rslt . "\n";                                // 최종 카카오알림톡 실패 시 메시지 결과수신
   echo "report_msg_rslt_text => " . $knt1->getReportMsgResultText($sendResponse->body->msg_rslt) . "\n"; // 최종 카카오알림톡 실패 시 메시지 결과수신 텍스트
 } else {
-  echo "ERROR 발송결과 확인도중 오류발생.\n"
+  echo "ERROR 발송결과 확인도중 오류발생.\n";
 }
