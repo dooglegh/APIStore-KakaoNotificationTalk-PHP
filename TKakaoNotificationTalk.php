@@ -249,7 +249,7 @@ class TKakaoNotificationTalk {
   public $apiUrls = array();
   public $timeOut = 10; // seconds...
 
-  public function __construct($key, $client_id, $kakaoPlusFriendClientId, $defaultCallBack) {
+  public function __construct($key, $client_id, $defaultCallBack) {
     $this->key = $key;
     $this->client_id = $client_id;
     $this->defaultCallBack = $defaultCallBack;
