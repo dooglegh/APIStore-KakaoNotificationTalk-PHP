@@ -25,7 +25,7 @@
 
 namespace TKakaoNotificationTalk;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; // For use Unirest package...
+require_once $_SERVER["DOCUMENT_ROOT"] . "/vendor/autoload.php"; // For use Unirest package...
 
 
 /*
@@ -46,17 +46,17 @@ const POST_MESSAGE_RESULT_TEMPLATE_ERROR = 800; // 템플릿코드에러
 const POST_MESSAGE_RESULT_PROFILE_ERROR = 900; // 프로파일이 존재하지 않음
 
 $PostMessageResults = [
-  POST_MESSAGE_RESULT_USER_ERROR => 'User Error',
-  POST_MESSAGE_RESULT_OK => 'OK',
-  POST_MESSAGE_RESULT_PARAM_ERROR => 'Parameter Error',
-  POST_MESSAGE_RESULT_FAILED_ERROR => 'failed_type 이 "N" 이 아닌 경우에 실패 SMS 제목과 내용이 없으면 에러',
-  POST_MESSAGE_RESULT_BTN_ERROR => '버튼 2개이상 발송시에 버튼 정보가 없는 템플릿에 대한 에러',
-  POST_MESSAGE_RESULT_ETC_ERROR => 'Etc Error',
-  POST_MESSAGE_RESULT_UNREGISTERED_NUMBER_ERROR => '발신번호 사전 등록제에 의한 미등록차단',
-  POST_MESSAGE_RESULT_POINT_ERROR => '충전요금 부족',
-  POST_MESSAGE_RESULT_NOT_CONFIRMED_TEMPLATE_ERROR => '템플릿코드 사전 승인제에 의한 미승인 차단',
-  POST_MESSAGE_RESULT_TEMPLATE_ERROR => '템플릿코드에러',
-  POST_MESSAGE_RESULT_PROFILE_ERROR => '프로파일이 존재하지 않음',
+  POST_MESSAGE_RESULT_USER_ERROR => "User Error",
+  POST_MESSAGE_RESULT_OK => "OK",
+  POST_MESSAGE_RESULT_PARAM_ERROR => "Parameter Error",
+  POST_MESSAGE_RESULT_FAILED_ERROR => "failed_type 이 "N" 이 아닌 경우에 실패 SMS 제목과 내용이 없으면 에러",
+  POST_MESSAGE_RESULT_BTN_ERROR => "버튼 2개이상 발송시에 버튼 정보가 없는 템플릿에 대한 에러",
+  POST_MESSAGE_RESULT_ETC_ERROR => "Etc Error",
+  POST_MESSAGE_RESULT_UNREGISTERED_NUMBER_ERROR => "발신번호 사전 등록제에 의한 미등록차단",
+  POST_MESSAGE_RESULT_POINT_ERROR => "충전요금 부족",
+  POST_MESSAGE_RESULT_NOT_CONFIRMED_TEMPLATE_ERROR => "템플릿코드 사전 승인제에 의한 미승인 차단",
+  POST_MESSAGE_RESULT_TEMPLATE_ERROR => "템플릿코드에러",
+  POST_MESSAGE_RESULT_PROFILE_ERROR => "프로파일이 존재하지 않음",
 ];
 
 
@@ -71,63 +71,63 @@ const RSLT_ACK_TIMEOUT = 5;
 const RSLT_RESPONSE_HISTORY_NOTFOUND = 6;
 const RSLT_NO_SEND_AVALIABLE_STATUS = 8;
 const RSLT_NO_VISIT_USER = 9;
-const RSLT_E_INSUFFICIENT = 'a';
-const RSLT_E_REJECT_ITER = 'b';
-const RSLT_E_DUP_KEY = 'c';
-const RSLT_E_DUP_PHONE = 'd';
-const RSLT_E_SERVER_ERROR = 'e';
-const RSLT_E_FORMAT_ERR = 'f';
-const RSLT_MESSAGE_NOT_FOUND = 'k';
-const RSLT_E_TIMEOUT_AGENT = 'o';
-const RSLT_E_DUPLICATE_PHONE_MSG = 'p';
-const RSLT_MESSAGE_EMPTY = 't';
-const RSLT_NO_USER = 'A';
-const RSLT_USER_BLOCKED_DELIVERY = 'B';
-const RSLT_SERIAL_NUMBER_DUPLICATED = 'C';
-const RSLT_DUPLICATED = 'D';
-const RSLT_UNSUPPORTED_CLIENT = 'E';
-const RSLT_ETC = 'F';
-const RSLT_FAILED_TO_SEND_MESSAGE = 'H';
-const RSLT_INVALID_PHONE_NUMBER = 'I';
-const RSLT_SAFETY_PHONE_NUMBER = 'J';
-const RSLT_MESSAGE_LENGTH_OVER_LIMIT = 'L';
-const RSLT_TEMPLATE_NOT_FOUND = 'M';
-const RSLT_SPAM = 'S';
-const RSLT_NO_MATCHED_TEMPLATE = 'U';
-const RSLT_FAILED_TO_MATCH_TEMPLATE = 'V';
+const RSLT_E_INSUFFICIENT = "a";
+const RSLT_E_REJECT_ITER = "b";
+const RSLT_E_DUP_KEY = "c";
+const RSLT_E_DUP_PHONE = "d";
+const RSLT_E_SERVER_ERROR = "e";
+const RSLT_E_FORMAT_ERR = "f";
+const RSLT_MESSAGE_NOT_FOUND = "k";
+const RSLT_E_TIMEOUT_AGENT = "o";
+const RSLT_E_DUPLICATE_PHONE_MSG = "p";
+const RSLT_MESSAGE_EMPTY = "t";
+const RSLT_NO_USER = "A";
+const RSLT_USER_BLOCKED_DELIVERY = "B";
+const RSLT_SERIAL_NUMBER_DUPLICATED = "C";
+const RSLT_DUPLICATED = "D";
+const RSLT_UNSUPPORTED_CLIENT = "E";
+const RSLT_ETC = "F";
+const RSLT_FAILED_TO_SEND_MESSAGE = "H";
+const RSLT_INVALID_PHONE_NUMBER = "I";
+const RSLT_SAFETY_PHONE_NUMBER = "J";
+const RSLT_MESSAGE_LENGTH_OVER_LIMIT = "L";
+const RSLT_TEMPLATE_NOT_FOUND = "M";
+const RSLT_SPAM = "S";
+const RSLT_NO_MATCHED_TEMPLATE = "U";
+const RSLT_FAILED_TO_MATCH_TEMPLATE = "V";
 
 $ResultMessages = [
-  RSLT_SUCCESS => '성공',
-  RSLT_INVALID_SENDER_KEY => '발신 프로필 키가 유효하지않음',
-  RSLT_NOT_CONNECTED_USER => '서버와 연결되어있지않은 사용자',
-  RSLT_ACK_TIMEOUT => '메시지 발송 후 수신여부 불투명',
-  RSLT_RESPONSE_HISTORY_NOTFOUND => '메시지 전송결과를 찾을 수 없음',
-  RSLT_NO_SEND_AVALIABLE_STATUS => '메시지를 전송할 수 없는 상태',
-  RSLT_NO_VISIT_USER => '최근 카카오톡을 미사용자',
-  RSLT_E_INSUFFICIENT => '건수 부족',
-  RSLT_E_REJECT_ITER => '전송 권한 없음',
-  RSLT_E_DUP_KEY => '중복된 키 접수 차단',
-  RSLT_E_DUP_PHONE => '중복된 수신번호 접수 차단',
-  RSLT_E_SERVER_ERROR => '서버 내부 에러',
-  RSLT_E_FORMAT_ERR => '메시지 포맷 에러',
-  RSLT_MESSAGE_NOT_FOUND => '메시지가존재하지않음',
-  RSLT_E_TIMEOUT_AGENT => 'TIME OUT 처리(Agent 내부)',
-  RSLT_E_DUPLICATE_PHONE_MSG => '메시지본문 중복 차단(Agent 내부)',
-  RSLT_MESSAGE_EMPTY => '메시지가비어있음',
-  RSLT_NO_USER => '카카오톡을 미사용자',
-  RSLT_USER_BLOCKED_DELIVERY => '알림톡 차단을 선택한 사용자',
-  RSLT_SERIAL_NUMBER_DUPLICATED => '메시지 일련번호 중복',
-  RSLT_DUPLICATED => '5 초 이내 메시지 중복 발송',
-  RSLT_UNSUPPORTED_CLIENT => '미지원 클라이언트 버전',
-  RSLT_ETC => '기타 오류',
-  RSLT_FAILED_TO_SEND_MESSAGE => '카카오 시스템 오류',
-  RSLT_INVALID_PHONE_NUMBER => '전화번호 오류',
-  RSLT_SAFETY_PHONE_NUMBER => '050 안심번호 발송불가',
-  RSLT_MESSAGE_LENGTH_OVER_LIMIT => '메시지 길이 제한 오류',
-  RSLT_TEMPLATE_NOT_FOUND => '템플릿을 찾을 수 없음',
-  RSLT_SPAM => '발신번호 검증 오류',
-  RSLT_NO_MATCHED_TEMPLATE => '메시지가 템플릿과 일치하지않음',
-  RSLT_FAILED_TO_MATCH_TEMPLATE => '메시지가 템플릿과 비교 실패',
+  RSLT_SUCCESS => "성공",
+  RSLT_INVALID_SENDER_KEY => "발신 프로필 키가 유효하지않음",
+  RSLT_NOT_CONNECTED_USER => "서버와 연결되어있지않은 사용자",
+  RSLT_ACK_TIMEOUT => "메시지 발송 후 수신여부 불투명",
+  RSLT_RESPONSE_HISTORY_NOTFOUND => "메시지 전송결과를 찾을 수 없음",
+  RSLT_NO_SEND_AVALIABLE_STATUS => "메시지를 전송할 수 없는 상태",
+  RSLT_NO_VISIT_USER => "최근 카카오톡을 미사용자",
+  RSLT_E_INSUFFICIENT => "건수 부족",
+  RSLT_E_REJECT_ITER => "전송 권한 없음",
+  RSLT_E_DUP_KEY => "중복된 키 접수 차단",
+  RSLT_E_DUP_PHONE => "중복된 수신번호 접수 차단",
+  RSLT_E_SERVER_ERROR => "서버 내부 에러",
+  RSLT_E_FORMAT_ERR => "메시지 포맷 에러",
+  RSLT_MESSAGE_NOT_FOUND => "메시지가존재하지않음",
+  RSLT_E_TIMEOUT_AGENT => "TIME OUT 처리(Agent 내부)",
+  RSLT_E_DUPLICATE_PHONE_MSG => "메시지본문 중복 차단(Agent 내부)",
+  RSLT_MESSAGE_EMPTY => "메시지가비어있음",
+  RSLT_NO_USER => "카카오톡을 미사용자",
+  RSLT_USER_BLOCKED_DELIVERY => "알림톡 차단을 선택한 사용자",
+  RSLT_SERIAL_NUMBER_DUPLICATED => "메시지 일련번호 중복",
+  RSLT_DUPLICATED => "5 초 이내 메시지 중복 발송",
+  RSLT_UNSUPPORTED_CLIENT => "미지원 클라이언트 버전",
+  RSLT_ETC => "기타 오류",
+  RSLT_FAILED_TO_SEND_MESSAGE => "카카오 시스템 오류",
+  RSLT_INVALID_PHONE_NUMBER => "전화번호 오류",
+  RSLT_SAFETY_PHONE_NUMBER => "050 안심번호 발송불가",
+  RSLT_MESSAGE_LENGTH_OVER_LIMIT => "메시지 길이 제한 오류",
+  RSLT_TEMPLATE_NOT_FOUND => "템플릿을 찾을 수 없음",
+  RSLT_SPAM => "발신번호 검증 오류",
+  RSLT_NO_MATCHED_TEMPLATE => "메시지가 템플릿과 일치하지않음",
+  RSLT_FAILED_TO_MATCH_TEMPLATE => "메시지가 템플릿과 비교 실패",
 ];
 
 
@@ -143,64 +143,64 @@ const E_INVALID_PHONE = 2; // 잘못된 전화번호/비가입자
 const E_NOT_ACK = 5; // 통신사 결과 미수신
 const E_PHONE_BUSY = 8; // 단말기 BUSY
 const E_SHADOW_REGION = 9; // 음영지역
-const E_INSUFFICIENT = 'a'; // 건수 부족
-const E_REJECT_ITER = 'b'; // 전송 권한 없음
-const E_DUP_KEY = 'c'; // 중복된 키 접수 차단
-const E_DUP_PHONE = 'd'; // 중복된 수신번호 접수 차단
-const E_SERVER_ERROR = 'e'; // 서버 내부 에러
-const E_TIMEOUT_AGENT = 'o'; // TIME OUT 처리(Agent 내부)
-const E_DUPLICATE_PHONE_MSG = 'p'; // 메시지본문 중복 차단(Agent 내부)
-const E_DUPLICATE_KEY = 'q'; // 메시지 중복키 체크(Agent 내부)
-const E_TOGETHER_COUNT = 't'; // 잘못된 동보 전송 수신번호 리스트 카운트(Agent 내부)
-const E_MSG_FULL = 'A'; // 단말기 메시지 저장개수 초과
-const E_SERVICE_STOP = 'B'; // 단말기 일시 서비스 정지
-const E_ETC_PHONE = 'C'; // 기타 단말기 문제
-const E_DENY = 'D'; // 착신 거절
-const E_POWER_OFF = 'E'; // 전원 꺼짐
-const E_ETC = 'F'; // 기타
-const E_INNER_FORMAT_ERR = 'G'; // 내부 포맷 에러
-const E_TELCO_FORMAT_ERR = 'H'; // 통신사 포맷 에러
-const E_UNACCEPTED_PHONE = 'I'; // SMS/MMS 서비스 불가 단말기
-const E_MSG_FAIL = 'J'; // 착신 측 호 불가 상태
-const E_TELCO_MSG_DEL = 'K'; // 통신사에서 메시지 삭제 처리
-const E_TELCO_QUE_FULL = 'L'; // 통신사 메시지 처리 불가 상태
-const E_WIRELESS_FAIL = 'M'; // 무선망단 전송 실패
-const E_SPAM = 'S'; // 스팸
-const E_CONTENTS_SIZE_ERR = 'V'; // 컨텐츠 사이즈 초과
-const E_CONTENTS_ERR = 'U'; // 잘못된 컨텐츠
+const E_INSUFFICIENT = "a"; // 건수 부족
+const E_REJECT_ITER = "b"; // 전송 권한 없음
+const E_DUP_KEY = "c"; // 중복된 키 접수 차단
+const E_DUP_PHONE = "d"; // 중복된 수신번호 접수 차단
+const E_SERVER_ERROR = "e"; // 서버 내부 에러
+const E_TIMEOUT_AGENT = "o"; // TIME OUT 처리(Agent 내부)
+const E_DUPLICATE_PHONE_MSG = "p"; // 메시지본문 중복 차단(Agent 내부)
+const E_DUPLICATE_KEY = "q"; // 메시지 중복키 체크(Agent 내부)
+const E_TOGETHER_COUNT = "t"; // 잘못된 동보 전송 수신번호 리스트 카운트(Agent 내부)
+const E_MSG_FULL = "A"; // 단말기 메시지 저장개수 초과
+const E_SERVICE_STOP = "B"; // 단말기 일시 서비스 정지
+const E_ETC_PHONE = "C"; // 기타 단말기 문제
+const E_DENY = "D"; // 착신 거절
+const E_POWER_OFF = "E"; // 전원 꺼짐
+const E_ETC = "F"; // 기타
+const E_INNER_FORMAT_ERR = "G"; // 내부 포맷 에러
+const E_TELCO_FORMAT_ERR = "H"; // 통신사 포맷 에러
+const E_UNACCEPTED_PHONE = "I"; // SMS/MMS 서비스 불가 단말기
+const E_MSG_FAIL = "J"; // 착신 측 호 불가 상태
+const E_TELCO_MSG_DEL = "K"; // 통신사에서 메시지 삭제 처리
+const E_TELCO_QUE_FULL = "L"; // 통신사 메시지 처리 불가 상태
+const E_WIRELESS_FAIL = "M"; // 무선망단 전송 실패
+const E_SPAM = "S"; // 스팸
+const E_CONTENTS_SIZE_ERR = "V"; // 컨텐츠 사이즈 초과
+const E_CONTENTS_ERR = "U"; // 잘못된 컨텐츠
 
 $ErrorMessages = [
-  E_OK => '성공',
-  E_TIMEOUT => '전송시간 초과',
-  E_INVALID_PHONE => '잘못된 전화번호/비가입자',
-  E_NOT_ACK => '통신사 결과 미수신',
-  E_PHONE_BUSY => '단말기 BUSY',
-  E_SHADOW_REGION => '음영지역',
-  E_INSUFFICIENT => '건수 부족',
-  E_REJECT_ITER => '전송 권한 없음',
-  E_DUP_KEY => '중복된 키 접수 차단',
-  E_DUP_PHONE => '중복된 수신번호 접수 차단',
-  E_SERVER_ERROR => '서버 내부 에러',
-  E_TIMEOUT_AGENT => 'TIME OUT 처리(Agent 내부)',
-  E_DUPLICATE_PHONE_MSG => '메시지본문 중복 차단(Agent 내부)',
-  E_DUPLICATE_KEY => '메시지 중복키 체크(Agent 내부)',
-  E_TOGETHER_COUNT => '잘못된 동보 전송 수신번호 리스트 카운트(Agent 내부)',
-  E_MSG_FULL => '단말기 메시지 저장개수 초과',
-  E_SERVICE_STOP => '단말기 일시 서비스 정지',
-  E_ETC_PHONE => '기타 단말기 문제',
-  E_DENY => '착신 거절',
-  E_POWER_OFF => '전원 꺼짐',
-  E_ETC => '기타',
-  E_INNER_FORMAT_ERR => '내부 포맷 에러',
-  E_TELCO_FORMAT_ERR => '통신사 포맷 에러',
-  E_UNACCEPTED_PHONE => 'SMS/MMS 서비스 불가 단말기',
-  E_MSG_FAIL => '착신 측 호 불가 상태',
-  E_TELCO_MSG_DEL => '통신사에서 메시지 삭제 처리',
-  E_TELCO_QUE_FULL => '통신사 메시지 처리 불가 상태',
-  E_WIRELESS_FAIL => '무선망단 전송 실패',
-  E_SPAM => '스팸',
-  E_CONTENTS_SIZE_ERR => '컨텐츠 사이즈 초과',
-  E_CONTENTS_ERR => '잘못된 컨텐츠',
+  E_OK => "성공",
+  E_TIMEOUT => "전송시간 초과",
+  E_INVALID_PHONE => "잘못된 전화번호/비가입자",
+  E_NOT_ACK => "통신사 결과 미수신",
+  E_PHONE_BUSY => "단말기 BUSY",
+  E_SHADOW_REGION => "음영지역",
+  E_INSUFFICIENT => "건수 부족",
+  E_REJECT_ITER => "전송 권한 없음",
+  E_DUP_KEY => "중복된 키 접수 차단",
+  E_DUP_PHONE => "중복된 수신번호 접수 차단",
+  E_SERVER_ERROR => "서버 내부 에러",
+  E_TIMEOUT_AGENT => "TIME OUT 처리(Agent 내부)",
+  E_DUPLICATE_PHONE_MSG => "메시지본문 중복 차단(Agent 내부)",
+  E_DUPLICATE_KEY => "메시지 중복키 체크(Agent 내부)",
+  E_TOGETHER_COUNT => "잘못된 동보 전송 수신번호 리스트 카운트(Agent 내부)",
+  E_MSG_FULL => "단말기 메시지 저장개수 초과",
+  E_SERVICE_STOP => "단말기 일시 서비스 정지",
+  E_ETC_PHONE => "기타 단말기 문제",
+  E_DENY => "착신 거절",
+  E_POWER_OFF => "전원 꺼짐",
+  E_ETC => "기타",
+  E_INNER_FORMAT_ERR => "내부 포맷 에러",
+  E_TELCO_FORMAT_ERR => "통신사 포맷 에러",
+  E_UNACCEPTED_PHONE => "SMS/MMS 서비스 불가 단말기",
+  E_MSG_FAIL => "착신 측 호 불가 상태",
+  E_TELCO_MSG_DEL => "통신사에서 메시지 삭제 처리",
+  E_TELCO_QUE_FULL => "통신사 메시지 처리 불가 상태",
+  E_WIRELESS_FAIL => "무선망단 전송 실패",
+  E_SPAM => "스팸",
+  E_CONTENTS_SIZE_ERR => "컨텐츠 사이즈 초과",
+  E_CONTENTS_ERR => "잘못된 컨텐츠",
 ];
 
 const REPORT_SEND_STATUS_READY = 1;
@@ -314,15 +314,15 @@ class TKakaoNotificationTalk {
    * 
    */
   public function postMessage($params = array()) {
-    if (!$params['callback']) {
-      $params['callback'] = $this->defaultCallBack;
+    if (!$params["callback"]) {
+      $params["callback"] = $this->defaultCallBack;
     }
 
-    if (!$params['apiVersion']) {
-      $params['apiVersion'] = 1;
+    if (!$params["apiVersion"]) {
+      $params["apiVersion"] = 1;
     }
 
-    return( $this->post($this->apiUrls['발송'], $params) );
+    return( $this->post($this->apiUrls["발송"], $params) );
   }
 
   /*
@@ -361,11 +361,11 @@ class TKakaoNotificationTalk {
   public function getReport($params = array()) {
     // "결과조회"     => "https://api.apistore.co.kr/kko/1/report/" . $this->client_id,
 
-    if (!$params['cmid']) {
+    if (!$params["cmid"]) {
       throw new \Exception("CMID 값이 비어있습니다.");
     }
 
-    return( $this->get($this->apiUrls['결과조회'], $params) );
+    return( $this->get($this->apiUrls["결과조회"], $params) );
   }
 
   public function getReportStatusText($status) {
@@ -384,11 +384,11 @@ class TKakaoNotificationTalk {
   }
 
   static public $templateStatus = [
-    1 => '반환 등록',
-    2 => '검수요청',
-    3 => '승인',
-    4 => '반려',
-    5 => '승인중단',
+    1 => "반환 등록",
+    2 => "검수요청",
+    3 => "승인",
+    4 => "반려",
+    5 => "승인중단",
   ];
 
   /*
@@ -433,7 +433,7 @@ class TKakaoNotificationTalk {
 
   public function getTemplate($params = array()) {
     // "템플릿조회"   => "https://api.apistore.co.kr/kko/1//template/list/" . $this->client_id,
-    return( $this->get($this->apiUrls['템플릿조회'], $params) );
+    return( $this->get($this->apiUrls["템플릿조회"], $params) );
   }
 
   /*
@@ -498,15 +498,15 @@ class TKakaoNotificationTalk {
   public function registSender($params) {
     // "발신번호등록" => "https://api.apistore.co.kr/kko/2/sendernumber/save/" . $this->client_id,
 
-    if (!$params['sendnumber']) {
-      throw new \Exception('발신번호가 비어있습니다.');
+    if (!$params["sendnumber"]) {
+      throw new \Exception("발신번호가 비어있습니다.");
     }
 
-    if (!$params['comment']) {
-      throw new \Exception('코멘트가 비어있습니다.');
+    if (!$params["comment"]) {
+      throw new \Exception("코멘트가 비어있습니다.");
     }
 
-    return( $this->post($this->apiUrls['발신번호등록'], $params) );
+    return( $this->post($this->apiUrls["발신번호등록"], $params) );
   }
 
   /*
@@ -549,7 +549,7 @@ class TKakaoNotificationTalk {
   public function getSenders($params) {
     // "발신번호목록" => "https://api.apistore.co.kr/kko/1/sendernumber/list/" . $this->client_id,
 
-    return( $this->get($this->apiUrls['발신번호목록'], $params) );
+    return( $this->get($this->apiUrls["발신번호목록"], $params) );
   }
 
   // API POST 호출
