@@ -245,7 +245,6 @@ class TKakaoNotificationTalk {
   // 구매 시 발급받은 Key의 코드값을 헤더 “x-waple-authorization”의 값으로 설정
   private $key = ""; // "고객 키"
   public $client_id = ""; // {client_id}
-  public $kakaoPlusFriendClientId = ""; // 카카오 플러스친구 아이디
   public $defaultCallBack = ""; // 기본 회신 연락처
   public $apiUrls = array();
   public $timeOut = 10; // seconds...
@@ -253,7 +252,6 @@ class TKakaoNotificationTalk {
   public function __construct($key, $client_id, $kakaoPlusFriendClientId, $defaultCallBack) {
     $this->key = $key;
     $this->client_id = $client_id;
-    $this->kakaoPlusFriendClientId = $kakaoPlusFriendClientId;
     $this->defaultCallBack = $defaultCallBack;
     $this->apiUrls = [
       "발송" => "https://api.apistore.co.kr/kko/1/msg/" . $this->client_id,
@@ -322,10 +320,6 @@ class TKakaoNotificationTalk {
 
     if (!$params['apiVersion']) {
       $params['apiVersion'] = 1;
-    }
-
-    if (!$params['client_id']) {
-      $params['client_id'] = $this->kakaoPlusFriendClientId;
     }
 
     return( $this->post($this->apiUrls['발송'], $params) );
