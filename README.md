@@ -10,7 +10,6 @@
 
 ```sh
 > composer require mashape/unirest-php
->
 ```
 
 ## 제작자 ( Author )
