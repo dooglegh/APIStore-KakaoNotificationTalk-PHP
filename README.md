@@ -42,7 +42,7 @@ $defaultCallBack = "..." // 발신자 전화번호
 $knt = new TKakaoNotificationTalk\TKakaoNotificationTalk($key, $clientId, $kakaoPlusFriendClientId, $defaultCallBack);
 
 // 메시지 발송.
-$body = array(
+$body = [
       phone => "수신자 전화번호",
       callback => "발진자 전화번호", // 발신번호 발신자번호등록 기능으로 먼저 등록해야 메시지발송이 가능합니다.
       reqdate => "", // 예약발송시 다음과같은 형식으로 일시를 지정한다. "20160517000000", 비워두면 즉시발송.
@@ -58,9 +58,9 @@ $body = array(
       // btn_txts => "숙소예약확인서,숙소홈페이지",
       // btn_urls1 => "https://...",
       // btn_urls2 => "https://..."
-);
+];
 $response = $knt->postMessage($body);
-if ($response->body->result_message == 'OK') {
+if ($response->body->result_message == "OK") {
   // 정상 발송. (이것의 의미는 API호출이.정상적일뿐이고 실제 수신자에게 제대로 메시지가전달되었는지는 발송결과확인을 해야 알 수 있다.)
   echo "CMID: " . $response->body->cmid . "\n"; // cmid 값을 기억하고 있다가 발송결과 확인할 때 사용하면 된다.
   echo "OK.\n";
@@ -72,7 +72,11 @@ if ($response->body->result_message == 'OK') {
 
 // 발송결과 확인. (발송결과는 발송후 즉시받을 수 있는 것이 아니므로 1분에 한번씩이라든지 주기적으로 확인해야 합니다.)
 $sendResponse = $knt1->getReport(["cmid" => $response->body->cmid]);
-if (isset($sendResponse) && isset($sendResponse->body) && isset($sendResponse->body->CMID) && $sendResponse->body->CMID != "" && $sendResponse->body->CMID != "result is null") {
+if (isset($sendResponse) 
+  && isset($sendResponse->body) 
+  && isset($sendResponse->body->CMID) 
+  && $sendResponse->body->CMID != "" 
+  && $sendResponse->body->CMID != "result is null") {
   echo "report_status => " . $sendResponse->body->STATUS . "\n"; // 발송상태 1: 발송대기 2: 전송완료 3: >결과수신완료
   echo "report_status_text => " . $knt1->getReportStatusText($sendResponse->body->STATUS) . "\n"; // 발송상태 텍스트
   echo "report_rslt => " . $sendResponse->body->RSLT . "\n"; // 최종 카카오알림톡 결과수신
