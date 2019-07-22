@@ -25,7 +25,7 @@ doogle@naver.com
 
 ## 사용 방법 ( Usage )
 
-example.php 를 참조하시기 바랍니다.
+[example.php](https://github.com/dooglegh/APIStore-KakaoNotificationTalk-PHP/blob/master/example.php) 를 참조하시기 바랍니다.
 
 
 ## 라이센스 ( License )
