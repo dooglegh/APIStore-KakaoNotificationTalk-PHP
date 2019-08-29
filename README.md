@@ -27,6 +27,8 @@ doogle@naver.com
 
 [example.php](https://github.com/dooglegh/APIStore-KakaoNotificationTalk-PHP/blob/master/example.php) 를 참조하시기 바랍니다.
 
+추가적인 문의 사항이나 건의 사항은 여기 깃허브 Issues 에 등록하시거나 블로그포스트의 댓글로 남겨주시면 감사하겠습니다.
+
 
 ## 라이센스 ( License )
 
