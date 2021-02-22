@@ -6,7 +6,7 @@
 
 * PHP 5.4+ ( Unirest PHP 버젼은 PHP 5.4+ 이상을 필요로 합니다. )
 * cURL ( Unirest PHP 버젼은 cURL 모듈을 사용하고 있습니다. )
-* Unirest ( Unirest PHP 버젼 패키지를 사용하기때문에 Composer 로 추가해주면 됩니다. (http://unirest.io/php.html ))
+* Unirest ( Unirest PHP 버젼 패키지를 사용하기때문에 Composer 로 추가해주면 됩니다. ( https://github.com/Kong/unirest-php ))
 
 ```sh
 > composer require mashape/unirest-php
