@@ -1,4 +1,9 @@
+# [아쉽게도 APISTORE.CO.KR 서비스가 2022년 11월에 서비스 종료되었네요.]
+
+서비스가 종료되어 더이상 이 소스코드로는 문자발송을 할 수 없게되었습니다. ㅜㅜ
+
 # APISTORE-KakaoNotificationTalk-PHP
+
 이 소스는 https://www.apistore.co.kr/ 에서 배포중인 유료 API인 카카오 알림톡 API 를 PHP에서 쉽게 사용할 수 있도록 구현하였습니다.
 
 
